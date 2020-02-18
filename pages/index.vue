@@ -1,16 +1,5 @@
 <template>
   <div>
-    >
-    <v-alert
-      :value="alert"
-      color="green"
-      dark
-      border="top"
-      icon="mdi-home"
-      transition="scale-transition"
-    >
-      Concluido com Sucesso!
-    </v-alert>
     <v-app id="inspire">
       <v-navigation-drawer v-model="drawer" app clipped>
         <v-list dense>
@@ -35,11 +24,21 @@
 
       <v-app-bar app clipped-left>
         <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-        <v-toolbar-title>Application</v-toolbar-title>
+        <v-toolbar-title>Aramazena Comprovante</v-toolbar-title>
       </v-app-bar>
 
       <v-content>
         <v-container>
+          <v-alert
+            :value="alert"
+            color="green"
+            dark
+            border="top"
+            icon="mdi-check"
+            transition="scale-transition"
+          >
+            Concluido com Sucesso!
+          </v-alert>
           <v-row align="center" justify="center">
             <v-col>
               <v-file-input
@@ -47,10 +46,10 @@
                 accept="image/png, image/jpeg, image/bmp"
                 placeholder="Pick an avatar"
                 prepend-icon="mdi-camera"
-                label="Avatar"
+                label="Upload de Comprovante"
                 v-model="file"
               ></v-file-input>
-              <v-btn small @click="submitFile()">Normal</v-btn>
+              <v-btn small @click="submitFile()">Armazenar</v-btn>
             </v-col>
           </v-row>
         </v-container>
@@ -70,7 +69,7 @@ export default {
     source: String
   },
   data: () => ({
-    alert: null,
+    alert: false,
     drawer: false,
     file: '',
     rules: [
@@ -96,12 +95,16 @@ export default {
             'Content-Type': 'multipart/form-data'
           }
         })
-        .then(function() {
+        .then(response => {
           console.log('SUCCESS!!')
           this.alert = true
+          setInterval(() => {
+            this.alert = false
+          }, 5000)
         })
         .catch(function() {
           console.log('FAILURE!!')
+          this.alert = false
         })
     },
     handleFileUpload() {
