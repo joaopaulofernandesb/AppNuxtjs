@@ -42,14 +42,11 @@
               <v-file-input
                 accept="image/png, image/jpeg, image/bmp"
                 v-model="file"
-                color="chartreuse"
-                counter
-                label="Upload de Comprovante"
-                prepend-icon="mdi-paperclip"
                 outlined
                 :show-size="200000000"
               >
-                <template v-slot:selection="{ index }">
+                <template v-slot:selection="{ index, text }">
+                  {{text}}
                   <div class v-if="index < 2">
                     <center>
                       <v-img
@@ -77,7 +74,9 @@
                 label="Upload de Comprovante"
                 v-model="file"
               ></v-file-input>-->
-              <v-btn small @click="submitFile()">Armazenar</v-btn>
+              <center>
+                <v-btn color="green" style="color:#ffff" @click="submitFile()">Armazenar</v-btn>
+              </center>
             </v-col>
           </v-row>
         </v-container>
@@ -102,7 +101,7 @@ export default {
     file: null
   }),
   created() {
-    this.$vuetify.theme.dark = true
+    this.$vuetify.theme.dark = false
   },
   methods: {
     submitFile() {
@@ -138,6 +137,7 @@ export default {
 </script>
 <style>
 .v-text-field--outlined fieldset {
+  border-radius: 12px;
   border-collapse: collapse;
   border-color: currentColor;
   border-style: solid;
@@ -152,7 +152,6 @@ export default {
   transition-property: color, border-width;
   transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
   height: 300px;
-  color: chartreuse;
 }
 
 .v-file-input .v-file-input__text {
@@ -170,7 +169,7 @@ export default {
   height: 150px;
   display: block;
   margin-top: 50px;
-  margin-left: 90px;
-  margin-right: auto;
+  margin-left: 5px;
+  margin-right: -5px;
 }
 </style>
