@@ -50,18 +50,21 @@
                 :show-size="200000000"
               >
                 <template v-slot:selection="{ index }">
-                  {{ index }}
                   <div class v-if="index < 2">
-                    <v-img
-                      class="uploadimage"
-                      src="https://image.flaticon.com/icons/svg/428/428696.svg"
-                    ></v-img>
+                    <center>
+                      <v-img
+                        class="uploadimage"
+                        src="https://image.flaticon.com/icons/svg/428/428696.svg"
+                      ></v-img>
+                    </center>
                   </div>
                   <div v-else-if="!index">
-                    <v-img
-                      class="uploadimage"
-                      src="https://image.flaticon.com/icons/svg/2122/2122122.svg"
-                    ></v-img>
+                    <center>
+                      <v-img
+                        class="uploadimage"
+                        src="https://image.flaticon.com/icons/svg/2122/2122122.svg"
+                      ></v-img>
+                    </center>
                   </div>
                 </template>
               </v-file-input>
@@ -166,8 +169,8 @@ export default {
   width: 150px;
   height: 150px;
   display: block;
-
-  margin-left: auto;
+  margin-top: 50px;
+  margin-left: 90px;
   margin-right: auto;
 }
 </style>
