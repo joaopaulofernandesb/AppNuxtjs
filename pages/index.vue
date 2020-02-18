@@ -36,9 +36,7 @@
             border="top"
             icon="mdi-check"
             transition="scale-transition"
-          >
-            Concluido com Sucesso!
-          </v-alert>
+          >Concluido com Sucesso!</v-alert>
           <v-row align="center" justify="center">
             <v-col>
               <v-file-input
@@ -53,7 +51,7 @@
               >
                 <template v-slot:selection="{ index }">
                   {{ index }}
-                  <div class="" v-if="index < 2">
+                  <div class v-if="index < 2">
                     <v-img
                       class="uploadimage"
                       src="https://image.flaticon.com/icons/svg/428/428696.svg"
@@ -75,7 +73,7 @@
                 prepend-icon="mdi-camera"
                 label="Upload de Comprovante"
                 v-model="file"
-              ></v-file-input> -->
+              ></v-file-input>-->
               <v-btn small @click="submitFile()">Armazenar</v-btn>
             </v-col>
           </v-row>
@@ -111,7 +109,7 @@ export default {
 
       // You should have a server side REST API
       axios
-        .post('https://ef36bedd.ngrok.io/api/upload', formData, {
+        .post('https://189e6aeb.ngrok.io/api/upload', formData, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
@@ -150,7 +148,7 @@ export default {
   transition-duration: 0.3s;
   transition-property: color, border-width;
   transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
-  height: 600px;
+  height: 300px;
   color: chartreuse;
 }
 
@@ -158,7 +156,7 @@ export default {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  height: 600px;
+  height: 300px;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -168,7 +166,7 @@ export default {
   width: 150px;
   height: 150px;
   display: block;
-  margin-top: 200px;
+
   margin-left: auto;
   margin-right: auto;
 }
