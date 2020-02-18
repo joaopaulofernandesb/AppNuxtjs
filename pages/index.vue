@@ -44,30 +44,27 @@
               <v-file-input
                 accept="image/png, image/jpeg, image/bmp"
                 v-model="file"
-                color="deep-purple accent-4"
+                color="chartreuse"
                 counter
                 label="Upload de Comprovante"
                 prepend-icon="mdi-paperclip"
                 outlined
                 :show-size="200000000"
               >
-                <template v-slot:selection="{ index, text }">
-                  <v-chip
-                    v-if="index < 2"
-                    color="deep-purple accent-4"
-                    dark
-                    label
-                    small
-                  >
-                    {{ text }}
-                  </v-chip>
-
-                  <!-- <span
-                    v-else-if="index === 2"
-                    class="overline grey--text text--darken-3 mx-2"
-                  >
-                    +{{ files.length - 2 }} File(s)
-                  </span> -->
+                <template v-slot:selection="{ index }">
+                  {{ index }}
+                  <div class="" v-if="index < 2">
+                    <v-img
+                      class="uploadimage"
+                      src="https://image.flaticon.com/icons/svg/428/428696.svg"
+                    ></v-img>
+                  </div>
+                  <div v-else-if="!index">
+                    <v-img
+                      class="uploadimage"
+                      src="https://image.flaticon.com/icons/svg/2122/2122122.svg"
+                    ></v-img>
+                  </div>
                 </template>
               </v-file-input>
 
@@ -154,6 +151,7 @@ export default {
   transition-property: color, border-width;
   transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
   height: 600px;
+  color: chartreuse;
 }
 
 .v-file-input .v-file-input__text {
@@ -165,10 +163,13 @@ export default {
   margin-left: auto;
   margin-right: auto;
 }
-.v-chip .v-chip__content {
-  align-items: center;
-  display: inline-flex;
-  height: 600px;
-  width: 600px;
+
+.uploadimage {
+  width: 150px;
+  height: 150px;
+  display: block;
+  margin-top: 200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 </style>
