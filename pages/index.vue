@@ -42,13 +42,43 @@
           <v-row align="center" justify="center">
             <v-col>
               <v-file-input
+                accept="image/png, image/jpeg, image/bmp"
+                v-model="file"
+                color="deep-purple accent-4"
+                counter
+                label="Upload de Comprovante"
+                prepend-icon="mdi-paperclip"
+                outlined
+                :show-size="200000000"
+              >
+                <template v-slot:selection="{ index, text }">
+                  <v-chip
+                    v-if="index < 2"
+                    color="deep-purple accent-4"
+                    dark
+                    label
+                    small
+                  >
+                    {{ text }}
+                  </v-chip>
+
+                  <!-- <span
+                    v-else-if="index === 2"
+                    class="overline grey--text text--darken-3 mx-2"
+                  >
+                    +{{ files.length - 2 }} File(s)
+                  </span> -->
+                </template>
+              </v-file-input>
+
+              <!-- <v-file-input
                 :rules="rules"
                 accept="image/png, image/jpeg, image/bmp"
                 placeholder="Pick an avatar"
                 prepend-icon="mdi-camera"
                 label="Upload de Comprovante"
                 v-model="file"
-              ></v-file-input>
+              ></v-file-input> -->
               <v-btn small @click="submitFile()">Armazenar</v-btn>
             </v-col>
           </v-row>
@@ -71,13 +101,7 @@ export default {
   data: () => ({
     alert: false,
     drawer: false,
-    file: '',
-    rules: [
-      value =>
-        !value ||
-        value.size < 20000000000000000 ||
-        'Avatar size should be less than 2 MB!'
-    ]
+    file: null
   }),
   created() {
     this.$vuetify.theme.dark = true
@@ -114,3 +138,37 @@ export default {
   }
 }
 </script>
+<style>
+.v-text-field--outlined fieldset {
+  border-collapse: collapse;
+  border-color: currentColor;
+  border-style: solid;
+  border-width: 1px;
+  bottom: 0;
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  top: -5px;
+  transition-duration: 0.3s;
+  transition-property: color, border-width;
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  height: 600px;
+}
+
+.v-file-input .v-file-input__text {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 600px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.v-chip .v-chip__content {
+  align-items: center;
+  display: inline-flex;
+  height: 600px;
+  width: 600px;
+}
+</style>
