@@ -1,53 +1,66 @@
 <template>
-  <v-app id="inspire">
-    <v-navigation-drawer v-model="drawer" app clipped>
-      <v-list dense>
-        <v-list-item link>
-          <v-list-item-action>
-            <v-icon>mdi-view-dashboard</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>Dashboard</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item link>
-          <v-list-item-action>
-            <v-icon>mdi-settings</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>Settings</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
+  <div>
+    >
+    <v-alert
+      :value="alert"
+      color="green"
+      dark
+      border="top"
+      icon="mdi-home"
+      transition="scale-transition"
+    >
+      Concluido com Sucesso!
+    </v-alert>
+    <v-app id="inspire">
+      <v-navigation-drawer v-model="drawer" app clipped>
+        <v-list dense>
+          <v-list-item link>
+            <v-list-item-action>
+              <v-icon>mdi-view-dashboard</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title>Dashboard</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item link>
+            <v-list-item-action>
+              <v-icon>mdi-settings</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title>Settings</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </v-navigation-drawer>
 
-    <v-app-bar app clipped-left>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-toolbar-title>Application</v-toolbar-title>
-    </v-app-bar>
+      <v-app-bar app clipped-left>
+        <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+        <v-toolbar-title>Application</v-toolbar-title>
+      </v-app-bar>
 
-    <v-content>
-      <v-container>
-        <v-row align="center" justify="center">
-          <v-col>
-            <v-file-input
-              :rules="rules"
-              accept="image/png, image/jpeg, image/bmp"
-              placeholder="Pick an avatar"
-              prepend-icon="mdi-camera"
-              label="Avatar"
-              v-model="file"
-            ></v-file-input>
-            <v-btn small @click="submitFile()">Normal</v-btn>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-content>
+      <v-content>
+        <v-container>
+          <v-row align="center" justify="center">
+            <v-col>
+              <v-file-input
+                :rules="rules"
+                accept="image/png, image/jpeg, image/bmp"
+                placeholder="Pick an avatar"
+                prepend-icon="mdi-camera"
+                label="Avatar"
+                v-model="file"
+              ></v-file-input>
+              <v-btn small @click="submitFile()">Normal</v-btn>
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-content>
 
-    <v-footer app>
-      <span>&copy; 2019</span>
-    </v-footer>
-  </v-app>
+      <v-footer app>
+        <span>&copy; 2019</span>
+      </v-footer>
+    </v-app>
+  </div>
 </template>
 
 <script>
@@ -57,6 +70,7 @@ export default {
     source: String
   },
   data: () => ({
+    alert: null,
     drawer: false,
     file: '',
     rules: [
@@ -84,6 +98,7 @@ export default {
         })
         .then(function() {
           console.log('SUCCESS!!')
+          this.alert = true
         })
         .catch(function() {
           console.log('FAILURE!!')
